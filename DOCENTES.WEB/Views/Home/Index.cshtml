@@ -1,0 +1,238 @@
+﻿@model DOCENTES.WEB.ViewModel.IndexViewModel.IndexValueViewModel
+@{ 
+
+}
+
+<div class="row clearfix">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box-4 hover-zoom-effect">
+            <div class="icon">
+                <i class="material-icons col-orange">person</i>
+            </div>
+            <div class="content">
+                <div class="text">DOCENTES</div>
+                <div class="number">@Model.nroDocente</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="info-box-4 hover-zoom-effect">
+            <div class="icon">
+                <i class="material-icons col-red">library_books</i>
+            </div>
+            <div class="content">
+                <div class="text">CURSOS</div>
+                <div class="number">@Model.nroCurso</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="card">
+            <div class="header bg-orange">
+                <h2>
+                    Orange - Title <small>Description text here...</small>
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);">Action</a></li>
+                            <li><a href="javascript:void(0);">Another action</a></li>
+                            <li><a href="javascript:void(0);">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="card">
+            <div class="header bg-blue-grey">
+                <h2>
+                    Blue Grey - Title <small>Description text here...</small>
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">mic</i>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);">Action</a></li>
+                            <li><a href="javascript:void(0);">Another action</a></li>
+                            <li><a href="javascript:void(0);">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="card">
+            <div class="header bg-pink">
+                <h2>
+                    Pink - Title <small>Description text here...</small>
+                </h2>
+                <ul class="header-dropdown m-r-0">
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">info_outline</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">help_outline</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <!-- Line Chart -->
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>LINE CHART</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);">Action</a></li>
+                            <li><a href="javascript:void(0);">Another action</a></li>
+                            <li><a href="javascript:void(0);">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <canvas id="line_chart" height="150"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Line Chart -->
+    <!-- Bar Chart -->
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>BAR CHART</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);">Action</a></li>
+                            <li><a href="javascript:void(0);">Another action</a></li>
+                            <li><a href="javascript:void(0);">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <canvas id="bar_chart" height="150"></canvas>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Bar Chart -->
+</div>
+
+
+@*<div class="row clearfix">
+    <!-- With Captions -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="body">
+                <div id="carousel-example-generic_2" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic_2" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic_2" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic_2" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="@Url.Content("~/Content/images/image-gallery/fondoCarrusel1.jpg")" />
+                            <div class="carousel-caption">
+                                <h3>First slide label</h3>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="@Url.Content("~/Content/images/image-gallery/fondoCarrusel2.jpg")" />
+                            <div class="carousel-caption">
+                                <h3>Second slide label</h3>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="@Url.Content("~/Content/images/image-gallery/fondoCarrusel3.jpg")" />
+                            <div class="carousel-caption">
+                                <h3>Third slide label</h3>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic_2" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic_2" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# With Captions -->
+</div>*@
+
+
+
+
+<!-- Jquery Core Js -->
+<script src="@Url.Content("~/Content/plugins/jquery/jquery.min.js")"></script>
+<!-- Bootstrap Core Js -->
+<script src="@Url.Content("~/Content/plugins/bootstrap/js/bootstrap.js")"></script>
+<!-- Select Plugin Js -->
+<script src="@Url.Content("~/Content/plugins/bootstrap-select/js/bootstrap-select.js")"></script>
+<!-- Slimscroll Plugin Js -->
+<script src="@Url.Content("~/Content/plugins/jquery-slimscroll/jquery.slimscroll.js")"></script>
+<!-- Waves Effect Plugin Js -->
+<script src="@Url.Content("~/Content/plugins/node-waves/waves.js")"></script>
+
+<!-- Chart Plugins Js -->
+<script src="@Url.Content("~/Content/plugins/chartjs/Chart.bundle.js")"></script>
+
+<!-- Custom Js -->
+<script src="@Url.Content("~/Content/js/admin.js")"></script>
+<script src="@Url.Content("~/Content/js/pages/charts/chartjs.js")"></script>
+<!-- Demo Js -->
+<script src="@Url.Content("~/Content/js/demo.js")"></script>

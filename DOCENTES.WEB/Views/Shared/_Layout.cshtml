@@ -1,0 +1,238 @@
+﻿
+@{
+    DOCENTES.WEB.Models.Usuario objUsuario = (DOCENTES.WEB.Models.Usuario)Session["objUsuario"];
+    String strUsuario = String.Empty;
+    String strCorreo = String.Empty;
+
+    if (objUsuario != null)
+    {
+        strUsuario = objUsuario.nombres + " " + objUsuario.apellidopaterno;
+        strCorreo = objUsuario.correo;
+    }
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Docentes Web</title>
+    <!-- Favicon-->
+    <link rel="icon" href="@Url.Content("~/Content/images/favicon.ico")" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link href="@Url.Content("~/Content/plugins/bootstrap/css/bootstrap.css")" rel="stylesheet">
+    <!-- Waves Effect Css -->
+    <link href="@Url.Content("~/Content/plugins/node-waves/waves.css")" rel="stylesheet" />
+    <!-- Animation Css -->
+    <link href="@Url.Content("~/Content/plugins/animate-css/animate.css")" rel="stylesheet" />
+    <!-- Dropzone Css -->
+    <link href="@Url.Content("~/Content/plugins/dropzone/dropzone.css")" rel="stylesheet">
+    <!-- Multi Select Css -->
+    <link href="@Url.Content("~/Content/plugins/multi-select/css/multi-select.css")" rel="stylesheet">
+    <!-- Bootstrap Spinner Css -->
+    <link href="@Url.Content("~/Content/plugins/jquery-spinner/css/bootstrap-spinner.css")" rel="stylesheet">
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="@Url.Content("~/Content/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css")" rel="stylesheet">
+    <!-- Bootstrap Select Css -->
+    <link href="@Url.Content("~/Content/plugins/bootstrap-select/css/bootstrap-select.css")" rel="stylesheet" />
+    <!-- noUISlider Css -->
+    <link href="@Url.Content("~/Content/plugins/nouislider/nouislider.min.css")" rel="stylesheet" />
+    <!-- JQuery DataTable Css -->
+    <link href="@Url.Content("~/Content/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css")" rel="stylesheet">
+    <!-- Sweetalert Css -->
+    <link href="@Url.Content("~/Content/plugins/sweetalert/sweetalert.css")" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet">
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="@Url.Content("~/Content/css/themes/all-themes.css")" rel="stylesheet" />
+</head>
+<body class="theme-blue-grey">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Espere, se está cargando...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="Qué desea buscar...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="#">@ViewBag.SubTitle @ViewBag.Title</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Call Search -->
+                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    <!-- #END# Call Search -->
+                    <!-- LogOut -->
+                    <li class="dropdown">
+                        <a href="@Url.Action("CerrarSesion", "Home")" class="dropdown-toggle" role="button">
+                            <i class="material-icons">input</i>
+                        </a>
+                    </li>
+                    <!-- #END# LogOut -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="@Url.Content("~/Content/images/user.png")" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@strUsuario</div>
+                    <div class="email">@strCorreo</div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Perfil</a></li>
+                            <li><a href="@Url.Action("CerrarSesion", "Home")"><i class="material-icons">input</i>Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">OPCIONES</li>
+                    <li class="active">
+                        <a href="@Url.Action("Index", "Home")">
+                            <i class="material-icons">home</i>
+                            <span>Inicio</span>
+                        </a>
+                    </li>
+                    <li class="@(ViewBag.Section == "Docente" ? "active" : "")">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">person</i>
+                            <span>Docente</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="@(ViewBag.Title == "Lista de Docentes" ? "active" : "")">
+                                <a href="@Url.Action("ListDocente", "Docente")">Listar Docente</a>
+                            </li>
+                            <li class="@(ViewBag.Title == "Docente" ? "active" : "")">
+                                <a href="@Url.Action("AddEditDocente", "Docente")">Nuevo Docente</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="@(ViewBag.Section == "Curso" ? "active" : "")">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">library_books</i>
+                            <span>Curso</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="@(ViewBag.Title == "Lista de Cursos" ? "active" : "")">
+                                <a href="@Url.Action("ListCurso", "Curso")">Listar Curso</a>
+                            </li>
+                            <li class="@(ViewBag.Title == "Curso" ? "active" : "")">
+                                <a href="@Url.Action("AddEditCurso", "Curso")">Nuevo Curso</a>
+                            </li>
+                        </ul>
+                    </li>
+                    @*<li>
+                        <a href="#">
+                            <i class="material-icons">verified_user</i>
+                            <span>Usuarios</span>
+                        </a>
+                    </li>*@
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                </div>
+                <div class="version">
+                    <b>Version: </b> 1.0.4
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+
+            @*@if (IsSectionDefined("Breadcrumbs"))
+            {
+                <ol class="breadcrumb breadcrumb-bg-blue-grey">
+                    <li><a href="javascript:void(0);"><i class="material-icons">home</i> Inicio</a></li>@RenderSection("Breadcrumbs", false)
+                    <li><a href="javascript:void(0);"><i class="material-icons">library_books</i>@ViewBag.SubTitle&nbsp;@ViewBag.Title</a></li>
+                </ol>
+            }*@
+
+            @if (TempData["Mensaje"] != null)
+            {
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="alert bg-green alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <i class="material-icons">done</i>&nbsp;@TempData["Mensaje"].ToString()
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (TempData["MensajeError"] != null)
+            {
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="alert bg-red alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <i class="material-icons">error_outline</i>&nbsp;@TempData["MensajeError"].ToString()
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            @RenderBody()
+
+            <!-- Widgets -->
+            <!-- #END# Widgets -->
+
+        </div>
+    </section>
+
+</body>
+</html>

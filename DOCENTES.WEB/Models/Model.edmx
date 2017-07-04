@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_DocentesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="cursoID" />
+          </Key>
+          <Property Name="cursoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombrecurso" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="credito" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Docente">
+          <Key>
+            <PropertyRef Name="docenteID" />
+          </Key>
+          <Property Name="docenteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="apellidopaterno" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellidomaterno" Type="varchar" MaxLength="30" />
+          <Property Name="tipodocumentoID" Type="int" Nullable="false" />
+          <Property Name="documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fechanacimiento" Type="date" Nullable="false" />
+          <Property Name="fechacontratacion" Type="date" Nullable="false" />
+          <Property Name="gradoinstruccionID" Type="int" Nullable="false" />
+          <Property Name="cursoID" Type="int" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GradoInstruccion">
+          <Key>
+            <PropertyRef Name="gradoinstruccionID" />
+          </Key>
+          <Property Name="gradoinstruccionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoDocumento">
+          <Key>
+            <PropertyRef Name="tipodocumentoID" />
+          </Key>
+          <Property Name="tipodocumentoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="apellidopaterno" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellidomaterno" Type="varchar" MaxLength="30" />
+          <Property Name="documento" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Docente_Curso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+          <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="cursoID" />
+            </Principal>
+            <Dependent Role="Docente">
+              <PropertyRef Name="cursoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Docente_GradoInstruccion">
+          <End Role="GradoInstruccion" Type="Self.GradoInstruccion" Multiplicity="1" />
+          <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradoInstruccion">
+              <PropertyRef Name="gradoinstruccionID" />
+            </Principal>
+            <Dependent Role="Docente">
+              <PropertyRef Name="gradoinstruccionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Docente_TipoDocumento">
+          <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="1" />
+          <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDocumento">
+              <PropertyRef Name="tipodocumentoID" />
+            </Principal>
+            <Dependent Role="Docente">
+              <PropertyRef Name="tipodocumentoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_DocentesModelStoreContainer">
+          <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Docente" EntityType="Self.Docente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradoInstruccion" EntityType="Self.GradoInstruccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Docente_Curso" Association="Self.FK_Docente_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Docente" EntitySet="Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Docente_GradoInstruccion" Association="Self.FK_Docente_GradoInstruccion">
+            <End Role="GradoInstruccion" EntitySet="GradoInstruccion" />
+            <End Role="Docente" EntitySet="Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Docente_TipoDocumento" Association="Self.FK_Docente_TipoDocumento">
+            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+            <End Role="Docente" EntitySet="Docente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_DocentesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="cursoID" />
+          </Key>
+          <Property Name="cursoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombrecurso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="credito" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Docente" Relationship="Self.FK_Docente_Curso" FromRole="Curso" ToRole="Docente" />
+        </EntityType>
+        <EntityType Name="Docente">
+          <Key>
+            <PropertyRef Name="docenteID" />
+          </Key>
+          <Property Name="docenteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombres" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidopaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidomaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tipodocumentoID" Type="Int32" Nullable="false" />
+          <Property Name="documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechanacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechacontratacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="gradoinstruccionID" Type="Int32" Nullable="false" />
+          <Property Name="cursoID" Type="Int32" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Curso" Relationship="Self.FK_Docente_Curso" FromRole="Docente" ToRole="Curso" />
+          <NavigationProperty Name="GradoInstruccion" Relationship="Self.FK_Docente_GradoInstruccion" FromRole="Docente" ToRole="GradoInstruccion" />
+          <NavigationProperty Name="TipoDocumento" Relationship="Self.FK_Docente_TipoDocumento" FromRole="Docente" ToRole="TipoDocumento" />
+        </EntityType>
+        <EntityType Name="GradoInstruccion">
+          <Key>
+            <PropertyRef Name="gradoinstruccionID" />
+          </Key>
+          <Property Name="gradoinstruccionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Docente" Relationship="Self.FK_Docente_GradoInstruccion" FromRole="GradoInstruccion" ToRole="Docente" />
+        </EntityType>
+        <EntityType Name="TipoDocumento">
+          <Key>
+            <PropertyRef Name="tipodocumentoID" />
+          </Key>
+          <Property Name="tipodocumentoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Docente" Relationship="Self.FK_Docente_TipoDocumento" FromRole="TipoDocumento" ToRole="Docente" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombres" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidopaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidomaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="documento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Docente_Curso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+          <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="cursoID" />
+            </Principal>
+            <Dependent Role="Docente">
+              <PropertyRef Name="cursoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Docente_GradoInstruccion">
+          <End Role="GradoInstruccion" Type="Self.GradoInstruccion" Multiplicity="1" />
+          <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradoInstruccion">
+              <PropertyRef Name="gradoinstruccionID" />
+            </Principal>
+            <Dependent Role="Docente">
+              <PropertyRef Name="gradoinstruccionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Docente_TipoDocumento">
+          <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="1" />
+          <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDocumento">
+              <PropertyRef Name="tipodocumentoID" />
+            </Principal>
+            <Dependent Role="Docente">
+              <PropertyRef Name="tipodocumentoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_DocentesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Curso" EntityType="Self.Curso" />
+          <EntitySet Name="Docente" EntityType="Self.Docente" />
+          <EntitySet Name="GradoInstruccion" EntityType="Self.GradoInstruccion" />
+          <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Docente_Curso" Association="Self.FK_Docente_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Docente" EntitySet="Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Docente_GradoInstruccion" Association="Self.FK_Docente_GradoInstruccion">
+            <End Role="GradoInstruccion" EntitySet="GradoInstruccion" />
+            <End Role="Docente" EntitySet="Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Docente_TipoDocumento" Association="Self.FK_Docente_TipoDocumento">
+            <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+            <End Role="Docente" EntitySet="Docente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_DocentesModelStoreContainer" CdmEntityContainer="db_DocentesEntities">
+          <EntitySetMapping Name="Curso">
+            <EntityTypeMapping TypeName="db_DocentesModel.Curso">
+              <MappingFragment StoreEntitySet="Curso">
+                <ScalarProperty Name="cursoID" ColumnName="cursoID" />
+                <ScalarProperty Name="nombrecurso" ColumnName="nombrecurso" />
+                <ScalarProperty Name="credito" ColumnName="credito" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Docente">
+            <EntityTypeMapping TypeName="db_DocentesModel.Docente">
+              <MappingFragment StoreEntitySet="Docente">
+                <ScalarProperty Name="docenteID" ColumnName="docenteID" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidopaterno" ColumnName="apellidopaterno" />
+                <ScalarProperty Name="apellidomaterno" ColumnName="apellidomaterno" />
+                <ScalarProperty Name="tipodocumentoID" ColumnName="tipodocumentoID" />
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="fechanacimiento" ColumnName="fechanacimiento" />
+                <ScalarProperty Name="fechacontratacion" ColumnName="fechacontratacion" />
+                <ScalarProperty Name="gradoinstruccionID" ColumnName="gradoinstruccionID" />
+                <ScalarProperty Name="cursoID" ColumnName="cursoID" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradoInstruccion">
+            <EntityTypeMapping TypeName="db_DocentesModel.GradoInstruccion">
+              <MappingFragment StoreEntitySet="GradoInstruccion">
+                <ScalarProperty Name="gradoinstruccionID" ColumnName="gradoinstruccionID" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoDocumento">
+            <EntityTypeMapping TypeName="db_DocentesModel.TipoDocumento">
+              <MappingFragment StoreEntitySet="TipoDocumento">
+                <ScalarProperty Name="tipodocumentoID" ColumnName="tipodocumentoID" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="db_DocentesModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="usuarioID" ColumnName="usuarioID" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidopaterno" ColumnName="apellidopaterno" />
+                <ScalarProperty Name="apellidomaterno" ColumnName="apellidomaterno" />
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

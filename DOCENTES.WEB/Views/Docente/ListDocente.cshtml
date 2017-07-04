@@ -1,0 +1,133 @@
+﻿@model DOCENTES.WEB.ViewModel.DocentesViewModel.ListDocenteViewModel
+@{
+    ViewBag.Title = "Lista de Docentes";
+    ViewBag.Section = "Docente";
+    int numero = 0;
+    
+}
+
+<div class="row clearfix js-sweetalert">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header col-md-12 col-xs-12">
+                <h1>
+                    <i class="material-icons">library_books</i>
+                    @ViewBag.Title
+                </h1>
+            </div>
+            <div class=" form-group col-md-4 col-sm-4 col-xs-4 pull-right top_search">
+                <form action="@Url.Action("ListDocente")" method="post" name="form">
+                    <div class="input-group">
+                        @Html.TextBoxFor(x => x.Filtro, new { @type = "text", @placeholder = "Nombre de docente a buscar", @class = "form-control" })
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="body">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>NOMBRES</th>
+                            <th>APELLIDO</th>
+                            <th>DOCUMENTO</th>
+                            <th>FECHA CONTRATACIÓN</th>
+                            <th>CURSO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>NOMBRES</th>
+                            <th>APELLIDO</th>
+                            <th>DOCUMENTO</th>
+                            <th>FECHA CONTRATACIÓN</th>
+                            <th>CURSO</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model.ListDocente)
+                        {
+                            numero++;
+                            <tr>
+                                <td>@item.nombres</td>
+                                <td>@item.apellidopaterno</td>
+                                <td>@item.documento</td>
+                                <td>@item.fechacontratacion</td>
+                                <td>@item.Curso.nombrecurso</td>
+                                <td>
+                                    <a class="btn bg-blue waves-effect" style="height: 20px; font-size:11px" href="@Url.Action("AddEditDocente", "Docente",new { docenteid = item.docenteID })">
+                                        Editar
+                                    </a>&nbsp;
+                                    <button class="btn bg-red waves-effect" style="height: 20px; font-size:11px" onclick="ConfirmDemo(@numero)">
+                                        Eliminar
+                                    </button>
+                                    <a href="@Url.Action("DeleteDocente", "Docente", new { docenteid = item.docenteID })" style="display:none" id="@numero"></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-heading">
+                <a class="btn bg-blue-grey waves-effect" href="@Url.Action("AddEditDocente","Docente")">Nuevo Docente</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<a onclick="ConfirmDemo()" />Presiona acá</a>*@
+<!-- #END# Exportable Table -->
+<!-- Jquery Core Js -->
+<script src="@Url.Content("~/Content/plugins/jquery/jquery.min.js")"></script>
+<!-- Bootstrap Core Js -->
+<script src="@Url.Content("~/Content/plugins/bootstrap/js/bootstrap.js")"></script>
+<!-- Select Plugin Js -->
+<script src="@Url.Content("~/Content/plugins/bootstrap-select/js/bootstrap-select.js")"></script>
+<!-- Slimscroll Plugin Js -->
+<script src="@Url.Content("~/Content/plugins/jquery-slimscroll/jquery.slimscroll.js")"></script>
+<!-- Bootstrap Notify Plugin Js -->
+<script src="@Url.Content("~/Content/plugins/bootstrap-notify/bootstrap-notify.js")"></script>
+<!-- Waves Effect Plugin Js -->
+<script src="@Url.Content("~/Content/plugins/node-waves/waves.js")"></script>
+<!-- SweetAlert Plugin Js -->
+<script src="@Url.Content("~/Content/plugins/sweetalert/sweetalert.min.js")"></script>
+<!-- Jquery DataTable Plugin Js -->
+<script src="@Url.Content("~/Content/plugins/jquery-datatable/jquery.dataTables.js")"></script>
+<script src="@Url.Content("~/Content/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js")"></script>
+<script src="@Url.Content("~/Content/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js")"></script>
+<script src="@Url.Content("~/Content/plugins/jquery-datatable/extensions/export/buttons.flash.min.js")"></script>
+<script src="@Url.Content("~/Content/plugins/jquery-datatable/extensions/export/jszip.min.js")"></script>
+<script src="@Url.Content("~/Content/plugins/jquery-datatable/extensions/export/pdfmake.min.js")"></script>
+<script src="@Url.Content("~/Content/plugins/jquery-datatable/extensions/export/vfs_fonts.js")"></script>
+<script src="@Url.Content("~/Content/plugins/jquery-datatable/extensions/export/buttons.html5.min.js")"></script>
+<script src="@Url.Content("~/Content/plugins/jquery-datatable/extensions/export/buttons.print.min.js")"></script>
+<!-- Custom Js -->
+<script src="@Url.Content("~/Content/js/admin.js")"></script>
+<script src="@Url.Content("~/Content/js/pages/tables/jquery-datatable.js")"></script>
+<script src="@Url.Content("~/Content/js/pages/ui/dialogs.js")"></script>
+<!-- Demo Js -->
+<script src="@Url.Content("~/Content/js/demo.js")"></script>
+
+<script type="text/javascript">
+    function ConfirmDemo(n) {
+        swal({
+            title: "Esta seguro de eliminar?",
+            text: "Ya no volvera a ver este registro",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Si, deseo eliminar!",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false
+        }, function () {
+            swal("Eliminado!", "El registro se elimino con exito.", "success");
+            location = $(this).attr("href")
+            location = document.getElementById(n).href;
+        });
+    }
+</script>
+
+
