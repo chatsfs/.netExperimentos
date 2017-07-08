@@ -1,18 +1,21 @@
-﻿using Xunit;
-using CursoS.WEB.ViewModel.CursosViewModel;
+﻿using NUnit.Framework;
+
+using DOCENTES.WEB.ViewModel.CursosViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DOCENTES.WEB.ViewModel.CursosViewModel;
+using NUnit.Framework;
 using DOCENTES.WEB.Models;
 
-namespace CursoS.WEB.ViewModel.CursosViewModel.Tests
+namespace DOCENTES.WEB.ViewModel.CursosViewModel.Tests
 {
+    [TestFixture()]
+
     public class AddEditCursoViewModelTests
     {
-        [Fact]
+        [Test()]
         public void D_cargarDatos()
         {
             AddEditCursoViewModel objViewModel = new AddEditCursoViewModel();
@@ -21,21 +24,21 @@ namespace CursoS.WEB.ViewModel.CursosViewModel.Tests
             Assert.False(objViewModel.tieneValor);
         }
 
-        [Fact]
+        [Test()]
         public void B_CursoExiste()
         {
             AddEditCursoViewModel objViewModel = new AddEditCursoViewModel();
             Assert.True(objViewModel.CursoExiste("Programación I"));
         }
 
-        [Fact]
+        [Test()]
         public void CursoExisteFlujoAlternativo()
         {
             AddEditCursoViewModel objViewModel = new AddEditCursoViewModel();
             Assert.False(objViewModel.CursoExiste("fgfdgregerg"));
         }
 
-        [Fact]
+        [Test()]
         public void A_RegistrarCurso()
         {
             ListCursoViewModel a = new ListCursoViewModel();
@@ -53,7 +56,7 @@ namespace CursoS.WEB.ViewModel.CursosViewModel.Tests
             Assert.True(!"0".Equals(objCurso.nombrecurso));
         }
 
-        [Fact]
+        [Test()]
         public void C_ModificarCurso()
         {
             ListCursoViewModel a = new ListCursoViewModel();
@@ -62,14 +65,14 @@ namespace CursoS.WEB.ViewModel.CursosViewModel.Tests
             int codigo = a.ListCurso[a.ListCurso.Count - 1].cursoID;
             objCurso.cursoID = codigo;
             objCurso.nombrecurso = "TestChange";
-            objCurso.credito = 5;            
+            objCurso.credito = 5;
 
             AddEditCursoViewModel objViewModel = new AddEditCursoViewModel();
             objViewModel.ModificarCurso(objCurso);
-            Assert.True(a.ListCurso[a.ListCurso.Count-1].nombrecurso.Equals("TestChange"));
+            Assert.True(a.ListCurso[a.ListCurso.Count - 1].nombrecurso.Equals("TestChange"));
         }
 
-        [Fact]
+        [Test()]
         public void E_EliminarCurso()
         {
             ListCursoViewModel a = new ListCursoViewModel();
@@ -83,3 +86,5 @@ namespace CursoS.WEB.ViewModel.CursosViewModel.Tests
         }
     }
 }
+    
+

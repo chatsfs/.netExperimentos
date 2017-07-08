@@ -1,4 +1,4 @@
-﻿using Xunit;
+﻿using NUnit.Framework;
 using DOCENTES.WEB.ViewModel.DocentesViewModel;
 using System;
 using System.Collections.Generic;
@@ -7,11 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DOCENTES.WEB.Models;
 
-namespace DOCENTES.WEB.ViewModel.DocentesViewModel.Facts
+namespace DOCENTES.WEB.ViewModel.DocentesViewModel.Tests
 {
-    public class AddEditDocenteViewModelFacts
+    [TestFixture()]
+    public class AddEditDocenteViewModelTests
     {
-        [Fact]
+        [Test()]
         public void D_cargarDatos()
         {
             AddEditDocenteViewModel objViewModel = new AddEditDocenteViewModel();
@@ -20,21 +21,21 @@ namespace DOCENTES.WEB.ViewModel.DocentesViewModel.Facts
             Assert.False(objViewModel.tieneValor);
         }
 
-        [Fact]
+        [Test()]
         public void B_DocenteExiste()
         {
             AddEditDocenteViewModel objViewModel = new AddEditDocenteViewModel();
             Assert.True(objViewModel.DocenteExiste("Israel"));
         }
 
-        [Fact]
+        [Test()]
         public void DocenteExisteFlujoAlternativo()
         {
             AddEditDocenteViewModel objViewModel = new AddEditDocenteViewModel();
             Assert.False(objViewModel.DocenteExiste("fgfdgregerg"));
         }
 
-        [Fact]
+        [Test()]
         public void A_RegistrarDocente()
         {
             ListDocenteViewModel a = new ListDocenteViewModel();
@@ -43,14 +44,14 @@ namespace DOCENTES.WEB.ViewModel.DocentesViewModel.Facts
             Docente objDocente = new Docente();
 
             objDocente.docenteID = codigo;
-            objDocente.nombres ="Javier";
-            objDocente.apellidopaterno= "Valverde";
-            objDocente.apellidomaterno= "Musculin";
+            objDocente.nombres = "Javier";
+            objDocente.apellidopaterno = "Valverde";
+            objDocente.apellidomaterno = "Musculin";
             objDocente.tipodocumentoID = 2;
-            objDocente.documento =666.ToString();
-            objDocente.fechanacimiento = DateTime.Parse("1999-09-13")       ;
+            objDocente.documento = 666.ToString();
+            objDocente.fechanacimiento = DateTime.Parse("1999-09-13");
             objDocente.fechacontratacion = DateTime.Now;
-            objDocente.gradoinstruccionID= 1;
+            objDocente.gradoinstruccionID = 1;
             objDocente.cursoID = 4;
             objDocente.telefono = "666666";
             objDocente.correo = "jeijei@aviones.air";
@@ -62,13 +63,13 @@ namespace DOCENTES.WEB.ViewModel.DocentesViewModel.Facts
             Assert.True(!"0".Equals(objDocente.nombres));
         }
 
-        [Fact]
+        [Test()]
         public void C_ModificarDocente()
         {
             ListDocenteViewModel a = new ListDocenteViewModel();
             Docente objDocente = new Docente();
             a.fill();
-            int codigo = a.ListDocente[a.ListDocente.Count - 1].docenteID ;
+            int codigo = a.ListDocente[a.ListDocente.Count - 1].docenteID;
             objDocente.docenteID = codigo;
             objDocente.nombres = "Javier";
             objDocente.apellidopaterno = "Valverde";
@@ -89,15 +90,15 @@ namespace DOCENTES.WEB.ViewModel.DocentesViewModel.Facts
             Assert.True(objDocente.nombres.Equals("Javier"));
         }
 
-        [Fact]
+        [Test()]
         public void E_EliminarDocente()
         {
             ListDocenteViewModel a = new ListDocenteViewModel();
             a.fill();
             int codigo = a.ListDocente[a.ListDocente.Count - 1].docenteID;
             Docente objDocente = new Docente();
-            objDocente.docenteID = codigo;           
-            AddEditDocenteViewModel objViewModel = new AddEditDocenteViewModel();           
+            objDocente.docenteID = codigo;
+            AddEditDocenteViewModel objViewModel = new AddEditDocenteViewModel();
             objViewModel.EliminarDocente(objDocente.docenteID);
             Assert.True(true);
         }

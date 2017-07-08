@@ -1,4 +1,4 @@
-﻿using Xunit;
+﻿using NUnit.Framework;
 using DOCENTES.WEB.ViewModel.DocentesViewModel;
 using System;
 using System.Collections.Generic;
@@ -8,31 +8,34 @@ using System.Threading.Tasks;
 
 namespace DOCENTES.WEB.ViewModel.DocentesViewModel.Tests
 {
+    [TestFixture()]
     public class ListDocenteViewModelTests
     {
-        [Fact]
+        [Test()]
         public void Fill()
         {
             ListDocenteViewModel objViewModel = new ListDocenteViewModel();
-            Assert.NotEqual(0, objViewModel.ListDocente.Count);
+            Assert.AreNotEqual(0, objViewModel.ListDocente.Count);
         }
 
-        [Fact]
+        [Test()]
         public void FillBuscar()
         {
             ListDocenteViewModel objViewModel = new ListDocenteViewModel();
             objViewModel.Filtro = "agasgasdgsadgag";
             objViewModel.fill();
-            Assert.Equal(0, objViewModel.ListDocente.Count);
+            Assert.AreEqual(0, objViewModel.ListDocente.Count);
         }
 
-        [Fact]
+        [Test()]
         public void FillBuscarFlujoAlternativo()
         {
             ListDocenteViewModel objViewModel = new ListDocenteViewModel();
             objViewModel.Filtro = "rgaegeargaergearerg";
             objViewModel.fill();
-            Assert.Equal(0, objViewModel.ListDocente.Count);
+            Assert.AreEqual(0, objViewModel.ListDocente.Count);
         }
+
+        
     }
 }
