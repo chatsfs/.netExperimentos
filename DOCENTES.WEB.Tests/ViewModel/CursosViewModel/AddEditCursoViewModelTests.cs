@@ -69,6 +69,7 @@ namespace DOCENTES.WEB.ViewModel.CursosViewModel.Tests
 
             AddEditCursoViewModel objViewModel = new AddEditCursoViewModel();
             objViewModel.ModificarCurso(objCurso);
+            a.fill();
             Assert.True(a.ListCurso[a.ListCurso.Count - 1].nombrecurso.Equals("TestChange"));
         }
 

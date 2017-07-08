@@ -47,6 +47,7 @@ namespace DOCENTES.WEB.ViewModel.CursosViewModel
             Curso objCurso = context.Curso.FirstOrDefault(x => x.cursoID == _objCurso.cursoID);
             objCurso.nombrecurso = _objCurso.nombrecurso;
             objCurso.credito= _objCurso.credito;
+            objCurso.estado = "A";
             context.SaveChanges();
 
         }

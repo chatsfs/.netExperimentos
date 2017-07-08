@@ -20,6 +20,7 @@ namespace DOCENTES.WEB.ViewModel.DocentesViewModel
         {
             db_DocentesEntities context = new db_DocentesEntities();
             if (!string.IsNullOrEmpty(Filtro)) ListDocente = context.Docente.Where(x => x.estado == "A" && x.nombres.ToUpper().Contains(Filtro.ToUpper())).ToList();
+            else ListDocente = context.Docente.Where(x => x.estado == "A").ToList();
         }
     }
 }
